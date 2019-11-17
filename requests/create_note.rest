@@ -1,0 +1,8 @@
+post http://localhost:3001/notes 
+Content-Type: application/json
+
+{
+    "content": "greetings from VS Code", 
+    "important": true
+
+}
