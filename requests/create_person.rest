@@ -1,7 +1,0 @@
-post http://localhost:3001/persons 
-Content-Type: application/json
-
-{
-    "name": "Nessie",
-    "number": "1234"
-}
