@@ -1,0 +1,9 @@
+post http://localhost:3003/api/blogs 
+Content-Type: application/json
+
+{
+  "title": "Doogos are da best",
+  "author": "Corgi McCorgson",
+  "url": "http://wholetthedogsout.com",
+  "likes": 4
+}
