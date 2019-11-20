@@ -1,1 +1,0 @@
-const averageLikes = require('../utils/list_helpers.js').averageLikes

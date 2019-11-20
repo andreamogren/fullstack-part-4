@@ -3,13 +3,18 @@ const dummy = (blogs) => {
 }
 
 const averageLikes = (blogs) => {
+  const blogLikes = []
+  blogs.map(blog => {
+    blogLikes.push(blog.likes)
+  })
+
   const reducer = (acc, item) => {
     return acc + item
   }
 
-  return blogs.length === 0 
+  return blogLikes.length === 0
     ? 0
-    : blogs.reduce(reducer, 0) / blogs.length
+    : blogLikes.reduce(reducer, 0) / blogLikes.length
 }
 
-module.export = {dummy, averageLikes}
+module.exports = { dummy, averageLikes }
