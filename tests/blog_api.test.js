@@ -14,7 +14,6 @@ beforeEach(async () => {
   await Promise.all(promiseArray)
 })
 
-
 test('the correct number of blogs is returned', async () => {
   const response = await api
     .get('/api/blogs')
@@ -24,7 +23,7 @@ test('the correct number of blogs is returned', async () => {
 })
 
 test('a blog can be added', async () => {
-  const newBlog= {
+  const newBlog = {
     title: 'Dogs are the best',
     author: 'Corgi McCorgson',
     url: 'https://wholetthedogsout.com',
@@ -42,6 +41,44 @@ test('a blog can be added', async () => {
   const titles = blogsAtEnd.body.map(r => r.title)
   expect(titles).toContain(
     newBlog.title
+  )
+})
+
+test('a blog can be deleted', async () => {
+  const blogToDelete = blogList.blogs[0]
+
+  await api
+    .delete(`/api/blogs/${blogToDelete.id}`)
+    .expect(204)
+
+  const blogsAtEnd = await api.get('/api/blogs')
+  expect(blogsAtEnd.body.length).toBe(blogList.blogs.length - 1)
+  const titles = blogsAtEnd.body.map(r => r.title)
+  expect(titles).not.toContain(
+    blogToDelete.title
+  )
+})
+
+test('a blog can be updated', async () => {
+  const updatedBlog = {
+    id: '5a422ba71b54a676234d17fb',
+    title: 'TDD harms architecture',
+    author: 'Robert C. Martin',
+    url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html',
+    likes: 7,
+  }
+
+  await api
+    .put(`/api/blogs/${updatedBlog.id}`)
+    .send(updatedBlog)
+    .expect(201)
+    .expect('Content-Type', /application\/json/)
+
+  const blogsAtEnd = await api.get('/api/blogs')
+  expect(blogsAtEnd.body.length).toBe(blogList.blogs.length + 1)
+  const titles = blogsAtEnd.body.map(r => r.title)
+  expect(titles).toContain(
+    updatedBlog.title
   )
 })
 
