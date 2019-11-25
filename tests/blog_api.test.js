@@ -5,6 +5,8 @@ const api = supertest(app)
 const Blog = require('../models/blog')
 const blogList = require('../utils/bloglist')
 
+mongoose.set('useFindAndModify', false)
+
 beforeEach(async () => {
   await Blog.deleteMany({})
 
@@ -48,7 +50,7 @@ test('a blog can be deleted', async () => {
   const blogToDelete = blogList.blogs[0]
 
   await api
-    .delete(`/api/blogs/${blogToDelete.id}`)
+    .delete(`/api/blogs/${blogToDelete._id}`)
     .expect(204)
 
   const blogsAtEnd = await api.get('/api/blogs')
@@ -65,17 +67,17 @@ test('a blog can be updated', async () => {
     title: 'TDD harms architecture',
     author: 'Robert C. Martin',
     url: 'http://blog.cleancoder.com/uncle-bob/2017/03/03/TDD-Harms-Architecture.html',
-    likes: 7,
+    likes: 1
   }
 
   await api
     .put(`/api/blogs/${updatedBlog.id}`)
     .send(updatedBlog)
-    .expect(201)
+    .expect(200)
     .expect('Content-Type', /application\/json/)
 
   const blogsAtEnd = await api.get('/api/blogs')
-  expect(blogsAtEnd.body.length).toBe(blogList.blogs.length + 1)
+  expect(blogsAtEnd.body.length).toBe(blogList.blogs.length)
   const titles = blogsAtEnd.body.map(r => r.title)
   expect(titles).toContain(
     updatedBlog.title
