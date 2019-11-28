@@ -1,8 +1,8 @@
-post http://localhost:3001/notes 
+post http://localhost:3001/api/notes 
 Content-Type: application/json
 
 {
     "content": "greetings from VS Code", 
-    "important": true
-
+    "important": true,
+    "userId": "5dda7a637d52d60dbdda1cb9"
 }
