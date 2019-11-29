@@ -1,8 +1,7 @@
-post http://localhost:3001/api/users
+post http://localhost:3001/api/login
 Content-Type: application/json
 
 {
-    "name": "brum", 
     "username": "brum1956",
     "password": "honung"
 }
