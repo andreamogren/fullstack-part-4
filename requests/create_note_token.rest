@@ -1,0 +1,9 @@
+post http://localhost:3001/api/notes
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJydW0xOTU2IiwiaWQiOiI1ZGUxNzZlYjZlM2JkYzBiNjdlMDE3ZDkiLCJpYXQiOjE1NzUxMDIzNTl9.JB-dgTPC_9UWWAqV00iTuxkRj-LHkUZLlKtm0mrEHqA
+
+
+{
+    "content": "honung är bäst ingen protest",
+    "important": true
+}
