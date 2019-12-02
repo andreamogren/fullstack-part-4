@@ -1,9 +1,11 @@
 post http://localhost:3003/api/blogs 
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRpbW15IiwiaWQiOiI1ZGUyNTVkZjk1NGMzNjE5OWMyYzA1MzkiLCJpYXQiOjE1NzUyOTgyMjV9.Ywlk7JOwaN8ST5_I-lpQbSvD8FMshN90Kp5fnEsCvuY
 
 {
   "title": "Doggos are da best",
   "author": "Corgi McCorgson",
   "url": "http://wholetthedogsout.com",
-  "likes": 4
+  "likes": 4,
+  "userId": "5de255df954c36199c2c0539"
 }
